@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build -t chaquopy-base -f base.dockerfile . && docker build -t chaquopy-target target && docker build -t build-wheel server/pypi
+      run: docker build -t chaquopy-base -f base.dockerfile . && docker build -t chaquopy-target target && docker build -t build-wheel server/pypi && docker run -v $(pwd)/packages:/root/pypi/packages -v $(pwd)/dist:/root/pypi/dist \ build-wheel --toolchain target/toolchains/armeabi-v7a grpcio
